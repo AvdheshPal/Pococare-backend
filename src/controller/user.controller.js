@@ -11,7 +11,7 @@ router.post('/signup', async (req, res)=>{
         
         const registerUser = await user.create(req.body)
 
-        return res.json({status:"Registration Successfull",registerUser});
+        return res.json({status:"Registration Successfull"});
 
     }
     catch(err){
@@ -39,14 +39,14 @@ router.post('/login', async(req, res) => {
 
 
         if(!isMatch){
-            return res.status(200).json({status:'Password is incorrect'})
+            return res.status(200).json({massage:'Password is invalid',status:"failed"})
         }else{
-            return res.status(200).json({status:'Login Successfull',token , finduser})
+            return res.status(200).json({status:'Login Successfull',token , user:finduser})
         }
 
     }
     catch(err){
-        return res.status(500).json({status:'email is incorrect'});
+        return res.status(500).json({massage:'Email is not exists',status:"failed"});
     }
 })
 
